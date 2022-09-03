@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -8,6 +7,8 @@ import {
   Pressable,
   Alert,
   TouchableOpacity,
+  SafeAreaView,
+  StatusBar
 } from "react-native";
 import Cross from "./components/Cross";
 
@@ -138,7 +139,6 @@ export default function App() {
 
   // Display a message of winner
   const gameWon = (player) => {
-    setTimeout(() => {
       Alert.alert(
         "Hurrreee... ",
         `Player ${player === "x" ? "X" : "O"} is Winner`,
@@ -149,7 +149,6 @@ export default function App() {
           },
         ]
       );
-    }, 500);
   };
 
   // Tie condition
@@ -227,7 +226,14 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      {/* status bar */}
+      <StatusBar
+        animated={true}
+        barStyle="light-content"
+        showHideTransition="fade"
+        style="auto"
+      />
       <ImageBackground source={require("./assets/bg.jpeg")} style={styles.bg} />
 
       <View style={styles.topButtons}>
@@ -296,7 +302,7 @@ export default function App() {
           </View>
         ))}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
